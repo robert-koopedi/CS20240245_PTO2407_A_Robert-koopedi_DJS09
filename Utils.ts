@@ -4,10 +4,10 @@ const returningUserDisplay = document.querySelector('#returning-user')
 const userNameDisplay = document.querySelector('#user')
 import { LoyaltyUser } from './enums'
 
-export function showReviewTotal (value : number, reviewer: string, isLoyalty: LoyaltyUser) {
+export function showReviewTotal (value : number, reviewer: string, isLoyalty: LoyaltyUser ) : void {
     const iconDisplay = LoyaltyUser.GOLD_USER ? '⭐' : ''
     reviewTotalDisplay.innerHTML = 
-   'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay
+   'review' + makeMultiple(value) + ' ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay
   }
   
 
@@ -18,3 +18,20 @@ export function showReviewTotal (value : number, reviewer: string, isLoyalty: Lo
     userNameDisplay.innerHTML = userName
   }
   
+  export function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+    if (authorityStatus) {
+        const priceDisplay = document.createElement('div')
+        priceDisplay.innerHTML = price.toString() + '/night'
+        element.appendChild(priceDisplay)
+    }
+  }
+
+  function add( firstValue: number ,secondValue: number) {
+    return firstValue + secondValue
+  }
+
+  export function makeMultiple(value: number) : string {
+    if (value > 1 || value == 0 ) {
+        return 's'
+    } else return ''
+}

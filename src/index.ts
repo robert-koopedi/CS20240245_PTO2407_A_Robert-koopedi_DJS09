@@ -1,3 +1,4 @@
+
 // Number Types mini-challenge 10 10.2
 // Write a function that will only accept numbers and attend to
 // all TypeScript weakness flags.
@@ -6,7 +7,8 @@
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
 import { Permissions, LoyaltyUser,} from '../enums.ts'
-import { showReviewTotal, populateUser } from '../Utils.ts'
+import { showReviewTotal, populateUser, showDetails } from '../Utils.ts'
+import { Price, Country} from '../types.ts'
 let isLoggedIn: boolean
 
 
@@ -86,7 +88,7 @@ const properties : {
       firstLine: string;
       city: string;
       code: number;
-      country: string;
+      country: Country;
   };
   contact: [number, string];
   isAvailable: boolean;
@@ -142,13 +144,7 @@ let authorityStatus : any
 
 isLoggedIn = true
 
-function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
-  if (authorityStatus) {
-      const priceDisplay = document.createElement('div')
-      priceDisplay.innerHTML = price.toString() + '/night'
-      element.appendChild(priceDisplay)
-  }
-}
+
 
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement('div')
