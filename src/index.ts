@@ -5,9 +5,9 @@
 
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
-import { Permissions, LoyaltyUser,} from './enums.ts'
-import { showReviewTotal, populateUser } from './Utils.ts'
-let isOpen : boolean
+import { Permissions, LoyaltyUser,} from '../enums.ts'
+import { showReviewTotal, populateUser } from '../Utils.ts'
+let isLoggedIn: boolean
 
 
 
@@ -92,7 +92,7 @@ const properties : {
   isAvailable: boolean;
 }[] = [
   {
-    image: 'images\dddddd.jpg',
+    image: 'images/dddddd.jpg',
     title: 'Colombian Shack',
     price: 45,
     location: {
@@ -105,7 +105,7 @@ const properties : {
   isAvailable: true 
 },
 {
-  image: 'images\th.jpg',
+  image: 'images/th.jpg',
   title: 'Polish Cottage',
   price: 41,
   location: {
@@ -118,7 +118,7 @@ const properties : {
   isAvailable: false 
 },
 {
-  image: 'images\lllllllll.jpg',
+  image: 'images/lllllllll.jpg',
   title: 'London Flat',
   price: 33,
   location: {
@@ -138,6 +138,18 @@ showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 populateUser(you.isReturning, you.firstName)
 
+let authorityStatus : any
+
+isLoggedIn = true
+
+function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+  if (authorityStatus) {
+      const priceDisplay = document.createElement('div')
+      priceDisplay.innerHTML = price.toString() + '/night'
+      element.appendChild(priceDisplay)
+  }
+}
+
 for (let i = 0; i < properties.length; i++) {
   const card = document.createElement('div')
   card.classList.add('card')
@@ -149,6 +161,7 @@ for (let i = 0; i < properties.length; i++) {
   image.setAttribute('alt', properties[i].title)
   card.appendChild(image)
   propertyContainer?.appendChild(card)
+  showDetails(isLoggedIn, card, properties[i].price)
 }
 
 let currentLocation: [string, string, number] = ['south africa', '3:59', 25]
