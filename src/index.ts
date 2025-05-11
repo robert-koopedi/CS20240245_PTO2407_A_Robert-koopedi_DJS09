@@ -5,32 +5,34 @@
 
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
-
+import { Permissions, LoyaltyUser,} from '../enums.ts'
 import { showReviewTotal, populateUser } from '../Utils.ts'
 let isOpen : boolean
+
+
 
 const reviews : {
   name: string;
   stars: number;
-  loyaltyUser: boolean;
+  loyaltyUser:LoyaltyUser;
   date: string;
 }[] = [
   {
     name: "Sheia",
     stars: 5,
-    loyaltyUser: true,
+    loyaltyUser: LoyaltyUser.GOLD_USER,
     date: "01-04-2021",
   },
   {
     name: "Andrzej",
     stars: 3,
-    loyaltyUser: false,
+    loyaltyUser: LoyaltyUser.BRONZE_USER,
     date: "28-03-2021",
   },
   {
     name: "Omar",
     stars: 4,
-    loyaltyUser: true,
+    loyaltyUser:LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
   },
 ];
@@ -53,13 +55,8 @@ showReviewTotal(reviews.length , reviews[0].name, reviews[0].loyaltyUser);
 //   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 // }
 
-const ADMIN = 'admin'
-const READ_ONLY = 'read-only'
 
-enum Permissions {
-  ADMIN,
-  READ_ONLY
-}
+
 
 const you = {
   firstName: 'Bobby',
