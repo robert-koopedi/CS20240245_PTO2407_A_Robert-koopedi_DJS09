@@ -39,19 +39,37 @@ const reviews : {
 showReviewTotal(reviews.length , reviews[0].name, reviews[0].loyaltyUser);
 
 
-const you: {
-  firstName: string;
-    lastName: string;
-    isReturning: boolean;
-    age: number;
-    stayedAt: string []
-} = {
+// const you: {
+//   firstName: string;
+//     lastName: string;
+//     isReturning: boolean;
+//     age: number;
+//     stayedAt: string []
+// } = {
+//   firstName: 'Bobby',
+//   lastName: 'Brown',
+//   isReturning: true,
+//   age: 40,
+//   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
+// }
+
+const ADMIN = 'admin'
+const READ_ONLY = 'read-only'
+
+enum Permissions {
+  ADMIN,
+  READ_ONLY
+}
+
+const you = {
   firstName: 'Bobby',
   lastName: 'Brown',
+  permissions: Permissions.ADMIN,
   isReturning: true,
-  age: 40,
+  age: 35,
   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
+
 
 const properties : {
   image: string;
