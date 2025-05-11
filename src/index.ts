@@ -5,18 +5,27 @@
 
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
-import { Permissions, LoyaltyUser,} from '../enums.ts'
-import { showReviewTotal, populateUser } from '../Utils.ts'
+import { Permissions, LoyaltyUser,} from './enums.ts'
+import { showReviewTotal, populateUser } from './Utils.ts'
 let isOpen : boolean
 
 
 
-const reviews : {
+const reviews : (
+  {
   name: string;
-  stars: number;
-  loyaltyUser:LoyaltyUser;
-  date: string;
-}[] = [
+    stars: number;
+    loyaltyUser: LoyaltyUser;
+    date: string; 
+} |
+{
+    name: string;
+    stars: number;
+    loyaltyUser: LoyaltyUser;
+    date: string;
+    description: string;
+}
+)[] = [
   {
     name: "Sheia",
     stars: 5,
@@ -34,6 +43,7 @@ const reviews : {
     stars: 4,
     loyaltyUser:LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
+    description: 'Great housekeeping',
   },
 ];
 
