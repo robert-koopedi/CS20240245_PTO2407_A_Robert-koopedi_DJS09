@@ -2,6 +2,9 @@
 // Write a function that will only accept numbers and attend to
 // all TypeScript weakness flags.
 // : number
+
+const propertyContainer = document.querySelector('.properties')
+
 import { showReviewTotal, populateUser } from '../Utils.ts'
 let isOpen : boolean
 
@@ -63,14 +66,62 @@ const properties : {
   isAvailable: boolean;
 }[] = [
   {
-      
-  }
+    image: 'images\dddddd.jpg',
+    title: 'Colombian Shack',
+    price: 45,
+    location: {
+        firstLine: 'shack 37',
+        city: 'Bogota',
+        code: 45632,
+        country: 'Colombia'
+  },
+  contact: 'marywinkle@gmail.com',
+  isAvailable: true 
+},
+{
+  image: 'images\th.jpg',
+  title: 'Polish Cottage',
+  price: 41,
+  location: {
+      firstLine: 'no 23',
+      city: 'Gdansk',
+      code: 343903,
+      country: 'Poland'
+  },
+  contact: 'garydavis@hotmail.com',
+  isAvailable: false 
+},
+{
+  image: 'images\lllllllll.jpg',
+  title: 'London Flat',
+  price: 33,
+  location: {
+      firstLine: 'flat 15',
+      city: 'London',
+      code: 35433,
+      country: 'United Kingdom',
+  },
+  contact: 'andyluger@aol.com',
+  isAvailable: true
+}
 ]
-
 
 // Functions
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
 
 
-populateUser(you.isReturning, you.userName)
+populateUser(you.isReturning, you.firstName)
+
+for (let i = 0; i < properties.length; i++) {
+  const card = document.createElement('div')
+  card.classList.add('card')
+  const title = document.createElement('h3')
+  title.textContent = properties[i].title
+  card.appendChild(title)
+  const image = document.createElement('img')
+  image.setAttribute('src', properties[i].image)
+  image.setAttribute('alt', properties[i].title)
+  card.appendChild(image)
+  propertyContainer?.appendChild(card)
+}
 
