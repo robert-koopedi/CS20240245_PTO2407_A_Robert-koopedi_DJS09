@@ -35,3 +35,18 @@ export function showReviewTotal (value : number, reviewer: string, isLoyalty: Lo
         return 's'
     } else return ''
 }
+
+export function getTopTwoReviews(reviews: {
+    name: string;
+    stars: number;
+    loyalyuser: LoyaltyUser;
+    date: string;
+}[]) : {
+    name: string;
+    stars: number;
+    loyalyuser: LoyaltyUser;
+    date: string;  
+}[]  {
+ const sortedReviews = reviews.sort((a, b) => b.stars - a.stars)
+ return sortedReviews.slice(0,2)
+}

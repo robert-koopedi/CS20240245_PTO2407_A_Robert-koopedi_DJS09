@@ -7,7 +7,7 @@
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
 import { Permissions, LoyaltyUser,} from '../enums.ts'
-import { showReviewTotal, populateUser, showDetails } from '../Utils.ts'
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from '../Utils.ts'
 import { Price, Country} from '../types.ts'
 let isLoggedIn: boolean
 
@@ -159,6 +159,30 @@ for (let i = 0; i < properties.length; i++) {
   propertyContainer?.appendChild(card)
   showDetails(isLoggedIn, card, properties[i].price)
 }
+
+//Broken code
+let count = 0
+function addReviews(array: {
+    name: string;
+    stars: number;
+    loyaltyUser: LoyaltyUser;
+    date: string;
+}[] ) : void {
+    if (!count ) {
+        count++
+        const topTwo = getTopTwoReviews(array)
+        for (let i = 0; i < topTwo.length; i++) {
+            const card = document.createElement('div')
+            card.classList.add('review-card')
+            card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name
+            reviewContainer.appendChild(card)
+        }
+        container.removeChild(button) 
+    }
+}
+
+button.addEventListener('click', () => addReviews(reviews))
+
 
 let currentLocation: [string, string, number] = ['south africa', '3:59', 25]
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
