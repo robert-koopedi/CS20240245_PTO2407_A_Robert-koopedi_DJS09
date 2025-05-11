@@ -6,28 +6,33 @@
 
 const propertyContainer = document.querySelector('.properties')
 const footer = document.querySelector('.footer')
-import { Permissions, LoyaltyUser,} from '../enums.ts'
+const reviewContainer = document.querySelector('.reviews')
+const container = document.querySelector('.container')
+const button = document.querySelector('button')
+
+import { Permissions, LoyaltyUser,} from '../enum.ts'
 import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from '../Utils.ts'
 import { Price, Country} from '../types.ts'
+import { Review } from '../interfaces.ts'
 let isLoggedIn: boolean
 
 
 
-const reviews : (
-  {
-  name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string; 
-} |
-{
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string;
-    description: string;
-}
-)[] = [
+const reviews : Review[] = [
+//   {
+//   name: string;
+//     stars: number;
+//     loyaltyUser: LoyaltyUser;
+//     date: string; 
+// } |
+// {
+//     name: string;
+//     stars: number;
+//     loyaltyUser: LoyaltyUser;
+//     date: string;
+//     description: string;
+// }
+// [] = [
   {
     name: "Sheia",
     stars: 5,
@@ -45,29 +50,12 @@ const reviews : (
     stars: 4,
     loyaltyUser:LoyaltyUser.SILVER_USER,
     date: "27-03-2021",
-    description: 'Great housekeeping',
+    // description: 'Great housekeeping',
   },
 ];
 
 
 showReviewTotal(reviews.length , reviews[0].name, reviews[0].loyaltyUser);
-
-
-// const you: {
-//   firstName: string;
-//     lastName: string;
-//     isReturning: boolean;
-//     age: number;
-//     stayedAt: string []
-// } = {
-//   firstName: 'Bobby',
-//   lastName: 'Brown',
-//   isReturning: true,
-//   age: 40,
-//   stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
-// }
-
-
 
 
 const you = {
@@ -162,12 +150,7 @@ for (let i = 0; i < properties.length; i++) {
 
 //Broken code
 let count = 0
-function addReviews(array: {
-    name: string;
-    stars: number;
-    loyaltyUser: LoyaltyUser;
-    date: string;
-}[] ) : void {
+function addReviews(array: Review[] ) : void {
     if (!count ) {
         count++
         const topTwo = getTopTwoReviews(array)
